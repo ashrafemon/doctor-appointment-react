@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import {timeGenerator} from "../../../utils/helpers";
 
 const DoctorAvailableTimes = ({appointForm, setAppointForm}) => {
+    // Local State
     const [times, setTimes] = useState([])
+
 
     const selectHandler = (item) => {
         setAppointForm({
@@ -13,6 +15,7 @@ const DoctorAvailableTimes = ({appointForm, setAppointForm}) => {
         })
     }
 
+    // Generate Doctor Available Time by Visit Duration
     useEffect(() => {
         if (appointForm.day) {
             setTimes(timeGenerator(appointForm.day, appointForm.doctorInfo.visitDurationInMin, appointForm.doctorInfo.availability))

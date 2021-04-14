@@ -11,15 +11,18 @@ const DoctorPage = () => {
     const history = useHistory()
     const {id} = useParams()
     const dispatch = useDispatch()
+
+    // Get data from store
     const doctor = useSelector(state => state.doctor.doctor)
     const notFound = useSelector(state => state.doctor.notFound)
     const notification = useSelector(state => state.doctor.notification)
 
-
+    // fetch specific doctor information
     useEffect(() => {
         dispatch(fetchDoctor(id))
     }, [dispatch, id])
 
+    // If doctor not found with doctor code
     useEffect(() => {
         setTimeout(() => {
             if (notFound) {
@@ -29,6 +32,7 @@ const DoctorPage = () => {
         }, 3000)
     }, [notFound, dispatch, history])
 
+    // Clear Notification
     useEffect(() => {
         if (notification.show) {
             setTimeout(() => {

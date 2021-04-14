@@ -10,13 +10,17 @@ const App = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        // fetch all doctors
         dispatch(fetchDoctors())
     }, [dispatch])
 
     return (
         <BrowserRouter>
             <Suspense fallback={<SuspenseLoading/>}>
+                {/* Header */}
                 <Header/>
+
+                {/* Routes */}
                 <Switch>
                     {routes.map((item, index) => (
                         <Route key={index} exact={item.exact} path={item.path} component={item.component}/>

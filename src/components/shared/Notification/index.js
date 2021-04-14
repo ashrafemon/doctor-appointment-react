@@ -8,13 +8,7 @@ const Notification = ({notification}) => {
     const dispatch = useDispatch()
 
     const closeHandler = () => {
-        dispatch({
-            type: 'TOGGLE_NOTIFICATION', payload: {
-                show: false,
-                type: '',
-                text: ''
-            }
-        })
+        dispatch({type: 'TOGGLE_NOTIFICATION', payload: {show: false, type: '', text: ''}})
     }
 
     return (
@@ -24,7 +18,6 @@ const Notification = ({notification}) => {
                 <ToastMessageClose onClick={closeHandler}>&times;</ToastMessageClose>
             </ToastMessage>
         )
-
     )
 }
 

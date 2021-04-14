@@ -1,5 +1,6 @@
 import * as types from '../actions/doctor/types'
 
+// Initial State
 const initialState = {
     doctors: [],
     doctor: {},
@@ -9,7 +10,7 @@ const initialState = {
         type: '',
         text: ''
     },
-    bookings: []
+    bookings: [],
 }
 
 const DoctorReducer = (state = initialState, action) => {

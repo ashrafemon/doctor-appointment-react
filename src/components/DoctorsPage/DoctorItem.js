@@ -15,15 +15,20 @@ import DoctorDefaultImage from './../../assets/img/doctor-default.jpg'
 const DoctorItem = ({doctor}) => {
     const history = useHistory()
 
+    // Destructure Doctor Object
     const {name, code, specialist, details} = doctor
 
     const appointBtnHandler = () => {
+        // Push to Doctor Specific Page
         history.push(`/doctors/${code}`)
     }
 
     return (
         <DoctorListItem>
+            {/* Doctor Avatar */}
             <DoctorItemImage src={DoctorDefaultImage}/>
+
+            {/* Doctor Information */}
             <DoctorItemContent>
                 <DoctorName>{name}</DoctorName>
                 <DoctorSpecialist>{specialist}</DoctorSpecialist>

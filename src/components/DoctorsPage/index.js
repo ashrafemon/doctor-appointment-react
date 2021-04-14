@@ -10,7 +10,7 @@ const DoctorsPage = () => {
         <Wrapper>
             <Content>
                 {/* Doctor List Title */}
-                <PortionTitle>Doctors</PortionTitle>
+                <PortionTitle>Doctor List</PortionTitle>
 
                 {/* Doctor List */}
                 <DoctorList>

@@ -12,10 +12,19 @@ import {
 import PropTypes from 'prop-types'
 import DoctorAvailableTimes from "./shared/DoctorAvailableTimes";
 import PatientInfoForm from "./shared/PatientInfoForm";
+import {motion} from "framer-motion";
 
 const AppointModal = ({show, handler, appointForm, setAppointForm, bookingHandler}) => {
+    const variants = {
+        open: {opacity: 1, visibility: 'visible'},
+        closed: {opacity: 0, visibility: "hidden"},
+    }
+
     return (
-        show && (
+        <motion.div
+            animate={show ? "open" : "closed"}
+            variants={variants}
+        >
             <Dialog>
                 <DialogContent>
                     <DialogCloseBtn onClick={() => handler(false)}>&times;</DialogCloseBtn>
@@ -25,6 +34,7 @@ const AppointModal = ({show, handler, appointForm, setAppointForm, bookingHandle
 
                         <FlexBox>
                             <AvailabilityBox>
+                                {/* Doctor Available Time Generate by Visit Duration */}
                                 <DoctorAvailableTimes
                                     appointForm={appointForm}
                                     setAppointForm={setAppointForm}
@@ -32,6 +42,7 @@ const AppointModal = ({show, handler, appointForm, setAppointForm, bookingHandle
                             </AvailabilityBox>
 
                             <FormBox>
+                                {/* Patient Information Form */}
                                 <PatientInfoForm
                                     appointForm={appointForm}
                                     setAppointForm={setAppointForm}
@@ -42,7 +53,7 @@ const AppointModal = ({show, handler, appointForm, setAppointForm, bookingHandle
                     </DialogContentBox>
                 </DialogContent>
             </Dialog>
-        )
+        </motion.div>
     )
 }
 

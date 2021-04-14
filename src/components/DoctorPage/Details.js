@@ -17,11 +17,15 @@ import DoctorDefaultImage from './../../assets/img/doctor-default.jpg'
 import PropTypes from 'prop-types'
 
 const Details = ({doctor}) => {
+    // Destructure doctor information
     const {name, code, specialist, org, details, visitDurationInMin, availability} = doctor
 
     return (
         <DoctorItem>
+            {/* Doctor Avatar */}
             <DoctorImage src={DoctorDefaultImage}/>
+
+            {/* Doctor Information */}
             <DoctorContent>
                 <DoctorCode>Doctor Code: {code}</DoctorCode>
                 <DoctorName>{name}</DoctorName>
@@ -30,12 +34,12 @@ const Details = ({doctor}) => {
                 <DoctorDetails>{details}</DoctorDetails>
                 <DoctorDetails>Duration: {visitDurationInMin} Minutes</DoctorDetails>
                 <DoctorAvailability>
+                    {/* Doctor Available Time */}
                     {Object.keys(availability).map((key, index) => (
                         <DoctorAvailabilityItem key={index}>
                             <DoctorAvailabilityDay>{key}</DoctorAvailabilityDay>
                             <DoctorAvailabilityTime>{availability[key]}</DoctorAvailabilityTime>
                         </DoctorAvailabilityItem>
-
                     ))}
                 </DoctorAvailability>
             </DoctorContent>

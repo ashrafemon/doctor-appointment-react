@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 const PatientInfoForm = ({appointForm, setAppointForm, bookingHandler}) => {
 
+    // Patient Information Field Value Store Handler
     const changeHandler = (e, key) => {
         setAppointForm({
             ...appointForm,
