@@ -1,11 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {PortionTitle, TimeList, TimeListItem} from "../styled";
 import PropTypes from "prop-types";
+import {timeGenerator} from "../../../utils/helpers";
 
 const DoctorAvailableTimes = ({appointForm, setAppointForm}) => {
-    const [times] = useState([
-        '10:00 PM', '10:15 PM', '10:30 PM'
-    ])
+    const [times, setTimes] = useState([])
 
     const selectHandler = (item) => {
         setAppointForm({
@@ -14,9 +13,15 @@ const DoctorAvailableTimes = ({appointForm, setAppointForm}) => {
         })
     }
 
+    useEffect(() => {
+        if (appointForm.day) {
+            setTimes(timeGenerator(appointForm.day, appointForm.doctorInfo.visitDurationInMin, appointForm.doctorInfo.availability))
+        }
+    }, [appointForm])
+
     return (
         <>
-            <PortionTitle>Doctor Availability (Sun)</PortionTitle>
+            <PortionTitle>Doctor Availability ({appointForm.day.toUpperCase()})</PortionTitle>
             <TimeList>
                 {times.map((item, index) => (
                     <TimeListItem
