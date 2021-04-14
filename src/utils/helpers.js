@@ -1,6 +1,6 @@
 export const timeGenerator = (day, duration, availability) => {
     let times = []
-    let splitterRange = 60 / duration
+    let splitterRange = Math.ceil(60 / duration)
     let visitRange = availability[day].split('-')
 
     let startVisit = visitRange[0].trim()
@@ -25,26 +25,26 @@ export const timeGenerator = (day, duration, availability) => {
     for (let i = startHour; i < endHourBy24; i++) {
         let minutes = startMinutes
         if (i === 12 && startMeridian === 'AM') {
-            times.push(`${i}:${startMinutes} PM`)
+            times.push(`${i}:${startMinutes === 0 ? '00' : startMinutes} PM`)
         } else if (i > 12) {
-            times.push(`${i - 12}:${startMinutes} PM`)
+            times.push(`${i - 12}:${startMinutes === 0 ? '00' : startMinutes} PM`)
         } else {
-            times.push(`${i}:${startMinutes} ${startMeridian}`)
+            times.push(`${i}:${startMinutes === 0 ? '00' : startMinutes} ${startMeridian}`)
         }
 
         for (let j = 0; j < splitterRange - 1; j++) {
             minutes = minutes + duration
             if (i === 12 && startMeridian === 'AM') {
-                times.push(`${i}:${minutes} PM`)
+                times.push(`${i}:${minutes === 0 ? '00' : minutes} PM`)
             } else if (i > 12) {
-                times.push(`${i - 12}:${minutes} PM`)
+                times.push(`${i - 12}:${minutes === 0 ? '00' : minutes} PM`)
             } else {
-                times.push(`${i}:${minutes} ${startMeridian}`)
+                times.push(`${i}:${minutes === 0 ? '00' : minutes} ${startMeridian}`)
             }
         }
     }
 
-    times.push(`${endHour}:${endMinutes} ${endMeridian}`)
+    times.push(`${endHour}:${endMinutes === 0 ? '00' : endMinutes} ${endMeridian}`)
 
     return times
 }
